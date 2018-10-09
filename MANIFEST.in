@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include rigpl_theme *.css
+recursive-include rigpl_theme *.csv
+recursive-include rigpl_theme *.html
+recursive-include rigpl_theme *.ico
+recursive-include rigpl_theme *.js
+recursive-include rigpl_theme *.json
+recursive-include rigpl_theme *.md
+recursive-include rigpl_theme *.png
+recursive-include rigpl_theme *.py
+recursive-include rigpl_theme *.svg
+recursive-include rigpl_theme *.txt
+recursive-exclude rigpl_theme *.pyc
