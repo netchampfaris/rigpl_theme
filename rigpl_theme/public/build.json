@@ -1,0 +1,8 @@
+{
+    "css/rigpl-theme.css": [
+        "public/scss/index.scss"
+    ],
+    "js/rigpl-theme.js": [
+        "public/js/index.js"
+    ]
+}

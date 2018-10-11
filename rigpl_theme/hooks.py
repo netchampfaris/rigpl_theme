@@ -10,6 +10,12 @@ app_icon = "octicon octicon-file-media"
 app_color = "orange"
 app_email = "hello@frappe.io"
 app_license = "MIT"
+hide_in_installer = True
+home_page = "index"
+
+website_context = {
+	"disable_website_theme": True
+}
 
 # Includes in <head>
 # ------------------

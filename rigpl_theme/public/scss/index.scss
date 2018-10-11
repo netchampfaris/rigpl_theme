@@ -1,0 +1,63 @@
+@import "variables";
+@import "~bootstrap/scss/bootstrap";
+@import "multilevel-dropdown";
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,700');
+
+
+body {
+	font-family: 'Poppins', sans-serif;
+	font-size: 16px;
+}
+
+.navbar:first-child {
+	border-top: 5px solid $primary;
+}
+
+.navbar.bg-dark {
+	.dropdown-menu {
+		font-size: .75rem;
+		background-color: $dark;
+		border-radius: 0;
+	}
+
+	.nav-link {
+		white-space: nowrap;
+		color: $light;
+
+		&:hover {
+			color: $primary;
+		}
+	}
+
+	.nav-item {
+		padding: 0rem 1rem;
+	}
+
+	.dropdown-item {
+		color: $light;
+
+		&:hover {
+			background-color: $dark;
+			color: $primary;
+		}
+	}
+}
+
+.input-dark {
+	background-color: $dark;
+	border-color: darken($primary, 40%);
+	color: $light;
+}
+
+.breadcrumb {
+	font-size: 0.75rem;
+}
+
+a.card {
+	text-decoration: none;
+}
+
+img {
+	max-width: 100%;
+}
