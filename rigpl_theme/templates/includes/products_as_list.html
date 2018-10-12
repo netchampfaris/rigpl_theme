@@ -1,7 +1,7 @@
 {% from "erpnext/templates/includes/macros.html" import product_image_square %}
 
 <div class="col-md-6 mb-4">
-	<a class="card text-dark bg-light" href="{{ route|abs_url }}">
+	<a class="card text-dark bg-light h-100" href="{{ route|abs_url }}">
 		<div class="card-body">
 			<h5 class="card-title m-0">{{ item_name or name }}</h5>
 			{% if item_code and item_code != item_name %}

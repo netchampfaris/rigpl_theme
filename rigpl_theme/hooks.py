@@ -17,6 +17,9 @@ website_context = {
 	"disable_website_theme": True
 }
 
+controller_context = {
+	'Item': 'rigpl_theme.templates.generators.item'
+}
 # Includes in <head>
 # ------------------
 

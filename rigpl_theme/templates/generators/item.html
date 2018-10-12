@@ -15,35 +15,6 @@
 				<p class="text-muted">
 					{{ _("Item Code") }}: <span itemprop="productID">{{ variant and variant.name or name }}</span>
 				</p>
-				<br>
-				<!-- <div class="item-attribute-selectors">
-					{% if has_variants and attributes %}
-
-					{% for d in attributes %}
-					{% if attribute_values[d.attribute] -%}
-					<div class="item-view-attribute {% if (attribute_values[d.attribute] | len)==1 -%} hidden {%- endif %}"
-							style="margin-bottom: 10px;">
-						<h6 class="text-muted">{{ _(d.attribute) }}</h6>
-						<select class="form-control"
-							style="max-width: 140px"
-							data-attribute="{{ d.attribute }}">
-						{% for value in attribute_values[d.attribute] %}
-						<option value="{{ value }}"
-						{% if selected_attributes and selected_attributes[d.attribute]==value -%}
-							selected
-						{%- elif disabled_attributes and value in disabled_attributes.get(d.attribute, []) -%}
-							disabled
-						{%- endif %}>
-							{{ _(value) }}
-						</option>
-						{% endfor %}
-						</select>
-					</div>
-					{%- endif %}
-					{% endfor %}
-
-					{% endif %}
-				</div> -->
 				<div>
 					<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 						<h4 class="item-price" itemprop="price"></h4>
@@ -72,30 +43,6 @@
 								</a>
 							</div>
 						</div>
-						<!-- <div id="item-spinner">
-							<div>
-								<div class="input-group number-spinner">
-									<span class="input-group-btn">
-										<button class="btn btn-default cart-btn" data-dir="dwn">
-											–</button>
-									</span>
-									<input class="form-control text-right cart-qty" value="1">
-									<span class="input-group-btn">
-										<button class="btn btn-default cart-btn" data-dir="up" style="margin-left:-2px;">
-										+</button>
-									</span>
-								</div>
-							</div>
-						</div> -->
-						<!-- <div id="item-add-to-cart">
-							<button class="btn btn-primary btn-sm">
-								{{ _("Add to Cart") }}</button>
-						</div>
-						<div id="item-update-cart" style="display: none;">
-							<a href="/cart" class='btn btn-sm btn-default'>
-								<i class='octicon octicon-check'></i>
-								{{ _("View in Cart") }}</a>
-						</div> -->
 					</div>
 				</div>
 			</div>
@@ -124,6 +71,54 @@
 			</div>
 		</div>
 		{%- endif %}
+
+		<div class="item-attribute-table">
+			{% if has_variants and attributes %}
+				<h6>Item Variants</h6>
+				<table class="table table-bordered">
+					<thead>
+					{% for d in attributes %}
+						<th>{{ d.attribute }}</th>
+					{% endfor %}
+					</thead>
+					<tbody>
+						{% for row in cross_product %}
+						<tr>
+							{% for attr_value in row %}
+								<td>{{ attr_value }}</td>
+							{% endfor %}
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			{% endif %}
+		</div>
+		<div class="item-attribute-selectors">
+			{% if has_variants and attributes %}
+				{% for d in attributes %}
+					{% if attribute_values[d.attribute] -%}
+					<div class="item-view-attribute {% if (attribute_values[d.attribute] | len)==1 -%} hidden {%- endif %}"
+							style="margin-bottom: 10px;">
+						<h6 class="text-muted">{{ _(d.attribute) }}</h6>
+						<select class="form-control"
+							style="max-width: 140px"
+							data-attribute="{{ d.attribute }}">
+						{% for value in attribute_values[d.attribute] %}
+						<option value="{{ value }}"
+						{% if selected_attributes and selected_attributes[d.attribute]==value -%}
+							selected
+						{%- elif disabled_attributes and value in disabled_attributes.get(d.attribute, []) -%}
+							disabled
+						{%- endif %}>
+							{{ _(value) }}
+						</option>
+						{% endfor %}
+						</select>
+					</div>
+					{%- endif %}
+				{% endfor %}
+			{% endif %}
+		</div>
 	</div>
 </div>
 <script>
