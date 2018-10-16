@@ -26,4 +26,7 @@ def get_context(context):
     homepage_sections = frappe.get_all('Homepage Section')
     context.custom_sections = [frappe.get_doc('Homepage Section', name) for name in homepage_sections]
 
+    context.twitter_handle = 'erpnext'
+    context.facebook_id = 'RohitCuttingTools'
+
     return context
