@@ -1,1 +1,88 @@
-<h1>Cuts everything except your pockets</h1>
+{% extends "rigpl_theme/templates/web.html" %}
+{% block content %}
+<main>
+    <section style="position: relative; overflow: hidden;">
+        <div class="container py-5">
+            <h1 class="text-uppercase font-weight-bold display-4 text-white">Rohit Cutting Tools</h1>
+            <h2 class="text-white">Cuts everything except your pocket</h2>
+        </div>
+
+        <div style="width: 100%; position: absolute; top: 0; left: 0; z-index: -1">
+            <video autoplay muted loop width="100%">
+                <source src="/files/Helping World Manufacturing Reduce Costs Since 1963.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+            <div style="position: absolute;left: 0;right: 0;width: 100%;height: 100%;top: 0;background: rgba(0,0,0, 0.5);"></div>
+        </div>
+
+        <div class="container">
+            <button class="my-5 btn btn-primary">Explore</button>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h3>Publications</h3>
+
+        <div class="row">
+            {% for blog in blogs %}
+            <div class="col-md-4 h-100">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ blog.title }}</h5>
+                        <p class="card-subtitle mb-2 text-muted">By {{ blog.blogger }}</p>
+                        <p class="card-text small">{{ blog.blog_intro }}</p>
+                        <a href="{{ blog.route }}" class="card-link">Read blog</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h3>Products</h3>
+
+        <div class="row">
+            {% for item in products %}
+            <div class="col-md-4 h-100">
+                <div class="card">
+                    <img class="card-img-top" src="{{ item.image }}" alt="{{ item.item_name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.item_name }}</h5>
+                        <p class="card-text">{{ item.item_group }}</p>
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ item.route }}" class="card-link">More details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {% for section in custom_sections %}
+    <section class="container my-5">
+        <h3>{{ section.section_title }}</h3>
+
+        <div class="row">
+
+            {% for card in section.section_content %}
+            <div class="col-md-4 h-100">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ card.title }}</h5>
+                        <p class="card-subtitle mb-2 text-muted">{{ card.subtitle }}</p>
+                        <p class="card-text">{{ card.content | truncate(140, True) }}</p>
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ card.link }}" class="card-link">More details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {% endfor %}
+</main>
+{% endblock %}
