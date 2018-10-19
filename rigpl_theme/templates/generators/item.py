@@ -1,10 +1,14 @@
+import frappe
 from itertools import product
 
 def get_context(context):
-	print(context.attributes, context.attribute_values)
-
 	valid_attribute_keys = []
 	values_to_cross = []
+
+	for variant in context.variants:
+		variant.attribute_map = frappe._dict({})
+		for attr in variant.attributes:
+			variant.attribute_map[attr.attribute] = attr.attribute_value
 
 	for d in context.attributes:
 		attr_values = context.attribute_values[d.attribute]

@@ -12,15 +12,19 @@
 			</div>
 			<div class="col-sm-6">
 				<h2 itemprop="name">{{ item_name }}</h2>
-				<p class="text-muted">
-					{{ _("Item Code") }}: <span itemprop="productID">{{ variant and variant.name or name }}</span>
-				</p>
+				<!-- <p class="text-muted">
+					{{ _("Item Code") }}: <span itemprop="productID">{{ doc.name }}</span>
+				</p> -->
 				<div>
+					<h6 class="text-uppercase text-muted">{{ _("Description") }}</h6>
+					<div itemprop="description" class="item-desc">
+					{{ web_long_description or description or _("No description given") }}
+					</div>
 					<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 						<h4 class="item-price" itemprop="price"></h4>
 						<div class="item-stock" itemprop="availability"></div>
 					</div>
-					<div class="item-cart row">
+					<!-- <div class="item-cart row">
 						<div class="col-md-6" id="item-spinner">
 							<div class="input-group mb-3 number-spinner">
 								<div class="input-group-prepend">
@@ -43,15 +47,7 @@
 								</a>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row item-website-description mt-5">
-			<div class="col-md-12">
-				<h6 class="text-uppercase text-muted">{{ _("Description") }}</h6>
-				<div itemprop="description" class="item-desc">
-				{{ web_long_description or description or _("No description given") }}
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -73,22 +69,24 @@
 		{%- endif %}
 
 		<div class="item-attribute-table">
-			{% if has_variants and attributes %}
-				<h6>Item Variants</h6>
+			{% if has_variants and variants %}
+				<h3>Item Variants</h3>
 				<table class="table table-bordered">
 					<thead>
+						<th>Item Code</th>
 					{% for attr_key in valid_attribute_keys %}
 						<th>{{ attr_key }}</th>
 					{% endfor %}
 						<th width="120"></th>
 					</thead>
 					<tbody>
-						{% for row in cross_product %}
+						{% for item_variant in variants %}
 						<tr>
-							{% for attr_value in row %}
-								<td>{{ attr_value }}</td>
+							<td>{{ item_variant.name }}</td>
+							{% for attr_key in valid_attribute_keys %}
+								<td>{{ item_variant.attribute_map[attr_key] }}</td>
 							{% endfor %}
-							<td><button class="btn btn-primary">Add to Cart</button></td>
+							<td><button data-item-code="{{item_variant.name}}" class="btn btn-primary item-variant-add-to-cart">Add to Cart</button></td>
 						</tr>
 						{% endfor %}
 					</tbody>
@@ -131,5 +129,15 @@
 	{% else %}
 	window.variant_info = null;
 	{% endif %}
+
+	frappe.ready(() => {
+		$('.page_content').on('click', '.item-variant-add-to-cart', (e) => {
+			const item_code = $(e.currentTarget).data().itemCode;
+			erpnext.shopping_cart.update_cart({
+				item_code,
+				qty: 1
+			});
+		})
+	})
 </script>
 {% endblock %}
