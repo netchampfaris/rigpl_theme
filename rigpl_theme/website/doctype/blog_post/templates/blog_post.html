@@ -1,0 +1,50 @@
+{% extends "templates/web.html" %}
+{% block meta_block %}
+	{% include "templates/includes/meta_block.html" %}
+{% endblock %}
+
+{% from "templates/includes/media.html" import media %}
+
+{% block page_content %}
+<style>
+	.page-head {display: none;}
+</style>
+<div style="max-width: 740px; margin: 0 auto;">
+	<section class="mb-4">
+		<h1 class="font-weight-bold" style="font-size: 2rem;">{{ doc.title }}</h1>
+		<p class="text-muted">{{ blog_intro }}</p>
+		<span class="mr-3">
+			<a href="/blog?blogger={{ blogger }}" class="text-muted">
+			{{ _("By") }} {{ blogger_info and blogger_info.full_name or full_name }}</a>
+		</span>
+		<span class="text-muted"> {{ frappe.format_date(published_on) }}</span>
+	</section>
+	<article class="blog-content" itemscope itemtype="http://schema.org/BlogPosting">
+		<!-- begin blog content -->
+		<div itemprop="articleBody" class="longform blog-text">
+		{{ content }}
+		</div>
+		<!-- end blog content -->
+	</article>
+	{% if blogger_info %}
+	{{ media(
+			blogger_info.full_name,
+			blogger_info.bio,
+			blogger_info.avatar or "/assets/frappe/images/default-avatar.png",
+		)
+	}}
+	{% endif %}
+	<div class="border-top mt-4 pt-4 blog-comments">
+		{% include 'templates/includes/comments/comments.html' %}
+	</div>
+</div>
+
+<style>
+	.blog-text {
+		font-size: 18px;
+	}
+</style>
+<script>
+    frappe.ready(function() { frappe.set_search_path("/blog"); })
+</script>
+{% endblock %}

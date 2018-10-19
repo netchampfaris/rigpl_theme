@@ -1,0 +1,20 @@
+{%- set post = doc -%}
+<div class="col-md-6">
+	<div class="card h-100" href="/{{ post.route }}">
+		<div class="card-body">
+			<h5 class="card-title">{{ post.title }}</h5>
+			<h6 class="card-subtitle mb-2 text-muted">
+				<a href="/blog?blogger={{ post.blogger }}">By {{ post.full_name }}</a>
+			</h6>
+			<p class="card-text">{{ post.intro }}</p>
+		</div>
+		<div class="card-footer text-muted">
+			<div class="d-flex align-items-center justify-content-between">
+				<span>
+					{{ frappe.format_date(post.published_on) }}
+				</span>
+				<a href="/{{ post.route }}" class="btn btn-link">Read blog</a>
+			</div>
+		</div>
+	</div>
+</div>

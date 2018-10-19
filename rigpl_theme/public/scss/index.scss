@@ -44,21 +44,6 @@ body {
 	}
 }
 
-.page_content a {
-	background-color: lighten($color: $primary, $amount: 25%);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-	color: $dark;
-	text-decoration: none;
-
-	&:hover {
-		background-color: lighten($primary, 10%);
-		border-bottom-color: rgba(0, 0, 0, 0.8);
-	}
-}
-
-a {
-	color: $midnight_blue;
-}
 
 .input-dark {
 	background-color: $dark;
