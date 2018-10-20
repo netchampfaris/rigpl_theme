@@ -11,13 +11,13 @@
 <meta name="url" content="{{ meta.url }}">
 
 <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-<meta name="og:title" content="{{ doc.item_name or doc.item_code }}"/>
-<meta name="og:locale" content="en_US">
-<meta name="og:type" content="product">
-<meta name="og:url" content="{{ meta.url }}"/>
-<meta name="og:image" content="{{ meta.image }}"/>
-<meta name="og:site_name" content="RIGPL" />
-<meta name="og:description" content="{{ meta.description }}"/>
+<meta property="og:title" content="{{ doc.item_name or doc.item_code }}"/>
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="product">
+<meta property="og:url" content="{{ meta.url }}"/>
+<meta property="og:image" content="{{ meta.image }}"/>
+<meta property="og:site_name" content="RIGPL" />
+<meta property="og:description" content="{{ meta.description }}"/>
 
 <!-- Schema.org for Google -->
 <meta itemprop="name" content="{{ title }}">
@@ -28,6 +28,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ title }}">
 <meta name="twitter:description" content="{{ meta.description }}">
+<meta name="twitter:image:src" content="{{ meta.image }}">
 
 <!-- Open Graph - Product (e-commerce) -->
 <meta name="product:price:currency" content="INR">
