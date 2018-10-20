@@ -3,11 +3,13 @@
 <main>
     <section style="position: relative; overflow: hidden;">
         <div class="container py-5">
-            <h1 class="text-uppercase font-weight-bold display-4 text-white">Rohit Cutting Tools</h1>
-            <h2 class="text-white">Cuts everything except your pocket</h2>
+            <h1 class="text-uppercase font-weight-bold display-4 text-white d-none d-sm-block">Rohit Cutting Tools</h1>
+            <h1 class="text-uppercase font-weight-bold text-white d-block d-sm-none">Rohit Cutting Tools</h1>
+            <h2 class="text-white d-none d-sm-block">Cuts everything except your pocket</h2>
+            <h3 class="text-white d-block d-sm-none">Cuts everything except your pocket</h3>
         </div>
 
-        <div style="width: 100%; position: absolute; top: 0; left: 0; z-index: -1">
+        <div style="width: 182vh; position: absolute; top: 0; left: 0; z-index: -1">
             <video autoplay muted loop width="100%">
                 <source src="/files/Helping_World_Manufacturing_Reduce_Costs_Since_1963.mp4" type="video/mp4">
                 Your browser does not support HTML5 video.
@@ -25,7 +27,7 @@
 
         <div class="row">
             {% for blog in blogs %}
-            <div class="col-md-4 h-100">
+            <div class="col-md-4 h-100 mt-4 mt-md-0">
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title">{{ blog.title }}</h5>
@@ -44,7 +46,7 @@
 
         <div class="row">
             {% for item in products %}
-            <div class="col-md-4 h-100">
+            <div class="col-md-4 h-100 mt-4 mt-md-0">
                 <div class="card">
                     <img class="card-img-top" src="{{ item.image }}" alt="{{ item.item_name }}">
                     <div class="card-body">
@@ -67,7 +69,7 @@
         <div class="row">
 
             {% for card in section.section_content %}
-            <div class="col-md-4 h-100">
+            <div class="col-md-4 h-100 mt-4 mt-md-0">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ card.title }}</h5>
