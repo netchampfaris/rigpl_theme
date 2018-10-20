@@ -1,7 +1,39 @@
 {% extends "templates/web.html" %}
 
 {% block title %} {{ title }} {% endblock %}
+{% block meta_block %}
+<meta name="keywords" content="{{ meta.keywords }}"/>
+<meta name="description" content="{{ meta.description }}"/>
+<meta name="image" content="{{ meta.image }}">
+<meta name="subject" content="{{ doc.item_name }}">
+<meta name="copyright"content="Rohit Cutting Tools">
+<meta name="language" content="EN">
+<meta name="url" content="{{ meta.url }}">
 
+<!-- Open Graph general (Facebook, Pinterest & Google+) -->
+<meta name="og:title" content="{{ doc.item_name or doc.item_code }}"/>
+<meta name="og:locale" content="en_US">
+<meta name="og:type" content="product">
+<meta name="og:url" content="{{ meta.url }}"/>
+<meta name="og:image" content="{{ meta.image }}"/>
+<meta name="og:site_name" content="RIGPL" />
+<meta name="og:description" content="{{ meta.description }}"/>
+
+<!-- Schema.org for Google -->
+<meta itemprop="name" content="{{ title }}">
+<meta itemprop="description" content="{{ meta.description }}">
+<meta itemprop="image" content="{{ meta.image }}">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="{{ meta.item_name }}">
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ meta.description }}">
+
+<!-- Open Graph - Product (e-commerce) -->
+<meta name="product:price:currency" content="INR">
+<meta name="product:brand" content="RIGPL">
+
+{% endblock %}
 {% block page_content %}
 {% from "erpnext/templates/includes/macros.html" import product_image %}
 <div class="item-content">

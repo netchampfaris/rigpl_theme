@@ -18,4 +18,14 @@ def get_context(context):
 
 	context.cross_product = list(product(*values_to_cross))
 	context.valid_attribute_keys = valid_attribute_keys
+
+	# meta information
+	doc = context.doc
+
+	context.meta = frappe._dict({})
+	context.meta.keywords = ','.join([doc.item_code, doc.item_name, doc.description, doc.item_group])
+	context.meta.url = frappe.utils.get_url() + '/' + context.route
+	context.meta.image = frappe.utils.get_url() + context.website_image
+	context.meta.description = doc.description[:150]
+
 	return context
