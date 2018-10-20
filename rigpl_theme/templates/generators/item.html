@@ -53,10 +53,6 @@
 					<div itemprop="description" class="item-desc">
 					{{ web_long_description or description or _("No description given") }}
 					</div>
-					<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-						<h4 class="item-price" itemprop="price"></h4>
-						<div class="item-stock" itemprop="availability"></div>
-					</div>
 					<!-- <div class="item-cart row">
 						<div class="col-md-6" id="item-spinner">
 							<div class="input-group mb-3 number-spinner">
@@ -110,15 +106,22 @@
 					{% for attr_key in valid_attribute_keys %}
 						<th>{{ attr_key }}</th>
 					{% endfor %}
+						<th width="160"></th>
 						<th width="120"></th>
 					</thead>
 					<tbody>
 						{% for item_variant in variants %}
-						<tr>
+						<tr data-variant-item-code="{{ item_variant.name }}">
 							<td>{{ item_variant.name }}</td>
 							{% for attr_key in valid_attribute_keys %}
 								<td>{{ item_variant.attribute_map[attr_key] }}</td>
 							{% endfor %}
+							<td>
+								<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+									<h4 class="item-price" itemprop="price"></h4>
+									<div class="item-stock" itemprop="availability"></div>
+								</div>
+							</td>
 							<td><button data-item-code="{{item_variant.name}}" class="btn btn-primary item-variant-add-to-cart">Add to Cart</button></td>
 						</tr>
 						{% endfor %}
@@ -155,7 +158,6 @@
 	</div>
 </div>
 <script>
-	{% include "templates/includes/product_page.js" %}
 
 	{% if variant_info %}
 	window.variant_info = {{ variant_info }};
@@ -170,7 +172,50 @@
 				item_code,
 				qty: 1
 			});
+		});
+
+		$('[data-variant-item-code]').each(function() {
+			const $this = $(this);
+			const item_code = $this.data().variantItemCode;
+			get_item_info(item_code)
+				.then(r => {
+					if (!r.message) return;
+					if(r.message.cart_settings.enabled) {
+						$this.find(".item-cart, .item-price, .item-stock").toggleClass("hidden", (!!!r.message.product_info.price || !!!r.message.product_info.in_stock));
+					}
+					if(r.message.cart_settings.show_price) {
+						$this.find(".item-price").toggleClass("hidden", false);
+					}
+					if(r.message.cart_settings.show_stock_availability) {
+						$this.find(".item-stock").toggleClass("hidden", false);
+					}
+					if(r.message.product_info.price) {
+						$this.find(".item-price")
+							.html(r.message.product_info.price.formatted_price_sales_uom + "<div style='font-size: small'>\
+								(" + r.message.product_info.price.formatted_price + " / " + r.message.product_info.uom + ")</div>");
+
+						if(r.message.product_info.in_stock==0) {
+							$this.find(".item-stock").html("<div style='color: red'> <i class='fa fa-close'></i> __('Not in stock')</div>");
+						}
+						else if(r.message.product_info.in_stock==1) {
+							var qty_display = __('In stock');
+							if (r.message.product_info.show_stock_qty) {
+								qty_display += " ("+r.message.product_info.stock_qty+")";
+							}
+							$this.find(".item-stock").html("<div style='color: green'>\
+								<i class='fa fa-check'></i> "+qty_display+"</div>");
+						}
+					}
+				})
 		})
+
+		function get_item_info(item_code) {
+			return frappe.call({
+				type: "POST",
+				method: "erpnext.shopping_cart.product_info.get_product_info_for_website",
+				args: { item_code }
+			})
+		}
 	})
 </script>
 {% endblock %}
