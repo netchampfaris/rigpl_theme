@@ -9,35 +9,16 @@
             <h3 class="text-white d-block d-sm-none">Cuts everything except your pocket</h3>
         </div>
 
-        <div style="width: 182vh; position: absolute; top: 0; left: 0; z-index: -1">
+        <div class="video-background">
             <video autoplay muted loop width="100%">
                 <source src="/files/Helping_World_Manufacturing_Reduce_Costs_Since_1963.mp4" type="video/mp4">
                 Your browser does not support HTML5 video.
             </video>
-            <div style="position: absolute;left: 0;right: 0;width: 100%;height: 100%;top: 0;background: rgba(0,0,0, 0.5);"></div>
+            <div class="video-background-overlay"></div>
         </div>
 
         <div class="container">
             <button class="my-5 btn btn-primary">Explore</button>
-        </div>
-    </section>
-
-    <section class="container my-5">
-        <h3>Publications</h3>
-
-        <div class="row">
-            {% for blog in blogs %}
-            <div class="col-md-4 h-100 mt-4 mt-md-0">
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="card-title">{{ blog.title }}</h5>
-                        <p class="card-subtitle mb-2 text-muted">By {{ blog.blogger }}</p>
-                        <p class="card-text small">{{ blog.blog_intro }}</p>
-                        <a href="{{ blog.route }}" class="card-link">Read blog</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
         </div>
     </section>
 
@@ -55,6 +36,25 @@
                     </div>
                     <div class="card-body">
                         <a href="{{ item.route }}" class="card-link">More details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h3>Publications</h3>
+
+        <div class="row">
+            {% for blog in blogs %}
+            <div class="col-md-4 h-100 mt-4 mt-md-0">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ blog.title }}</h5>
+                        <p class="card-subtitle mb-2 text-muted">By {{ blog.blogger }}</p>
+                        <p class="card-text small">{{ blog.blog_intro }}</p>
+                        <a href="{{ blog.route }}" class="card-link">Read blog</a>
                     </div>
                 </div>
             </div>
