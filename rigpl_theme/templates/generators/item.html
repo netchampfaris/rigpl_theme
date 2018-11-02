@@ -104,7 +104,7 @@
 					<thead>
 						<th>Item Code</th>
 					{% for attr_key in valid_attribute_keys %}
-						<th>{{ attr_key }}</th>
+						<th>{{ attributes_map[attr_key].field_name }}</th>
 					{% endfor %}
 						<th width="160"></th>
 						<th width="120"></th>
