@@ -3,10 +3,10 @@
 <main>
     <section style="position: relative; overflow: hidden;">
         <div class="container py-5">
-            <h1 class="text-uppercase font-weight-bold display-4 text-white d-none d-sm-block">Rohit Cutting Tools</h1>
-            <h1 class="text-uppercase font-weight-bold text-white d-block d-sm-none">Rohit Cutting Tools</h1>
-            <h2 class="text-white d-none d-sm-block">Cuts everything except your pocket</h2>
-            <h3 class="text-white d-block d-sm-none">Cuts everything except your pocket</h3>
+            <h1 class="text-uppercase font-weight-bold display-4 text-white d-none d-sm-block">{{ homepage_settings.title or 'Rohit Cutting Tools'}}</h1>
+            <h1 class="text-uppercase font-weight-bold text-white d-block d-sm-none">{{ homepage_settings.title or 'Rohit Cutting Tools'}}</h1>
+            <h2 class="text-white d-none d-sm-block">{{ homepage_settings.tag_line }}</h2>
+            <h3 class="text-white d-block d-sm-none">{{ homepage_settings.tag_line }}</h3>
         </div>
 
         <div class="video-background">
@@ -26,16 +26,16 @@
         <h3>Products</h3>
 
         <div class="row">
-            {% for item in products %}
-            <div class="col-md-4 h-100 mt-4 mt-md-0">
-                <div class="card">
+            {% for item in homepage_settings.products %}
+            <div class="col-md-4 mt-4 mt-md-0">
+                <div class="card h-100">
                     <img class="card-img-top" src="{{ item.image }}" alt="{{ item.item_name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ item.item_name }}</h5>
-                        <p class="card-text">{{ item.item_group }}</p>
+                        <!-- <p class="card-text">{{ item.item_group }}</p> -->
                     </div>
                     <div class="card-body">
-                        <a href="{{ item.route }}" class="card-link">More details</a>
+                        <a href="{{ get_item_route(item.item_code) }}" class="card-link">More details</a>
                     </div>
                 </div>
             </div>
@@ -51,9 +51,9 @@
             <div class="col-md-4 h-100 mt-4 mt-md-0">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title">{{ blog.title }}</h5>
+                        <h5 class="card-title">{{ blog.title }}</h5>
                         <p class="card-subtitle mb-2 text-muted">By {{ blog.blogger }}</p>
-                        <p class="card-text small">{{ blog.blog_intro }}</p>
+                        <p class="card-text">{{ blog.blog_intro }}</p>
                         <a href="{{ blog.route }}" class="card-link">Read blog</a>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
 
     {% for section in custom_sections %}
     <section class="container my-5">
-        <h3>{{ section.section_title }}</h3>
+        <h3>{{ section.name }}</h3>
 
         <div class="row">
 
@@ -73,7 +73,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ card.title }}</h5>
-                        <p class="card-subtitle mb-2 text-muted">{{ card.subtitle }}</p>
+                        <p class="card-subtitle mb-2 text-muted">{{ card.subtitle or '' }}</p>
                         <p class="card-text">{{ card.content | truncate(140, True) }}</p>
                     </div>
                     <div class="card-body">
@@ -105,10 +105,10 @@
         </div>
     </section>
 
-    <section class="bg-primary text-white py-5">
+    <section class="bg-light border-top py-5">
         <div class="container text-center">
             <h5>Have more questions?</h5>
-            <a class="btn btn-dark mt-2" href="/contact">Contact Us</a>
+            <a class="btn btn-primary mt-2" href="/contact">Contact Us</a>
         </div>
     </section>
 </main>
