@@ -25,7 +25,10 @@ def get_context(context):
 	doc = context.doc
 
 	context.meta = frappe._dict({})
-	context.meta.keywords = ','.join([doc.item_code, doc.item_name, doc.description, doc.item_group])
+
+	keywords = ','.join([doc.item_code, doc.item_name, doc.description, doc.item_group])
+	keywords = ', '.join(keywords.split(' '))
+	context.meta.keywords = keywords
 	context.meta.url = frappe.utils.get_url() + '/' + context.route
 	context.meta.image = frappe.utils.get_url() + context.website_image
 	context.meta.description = doc.description[:150]
