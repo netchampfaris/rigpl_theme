@@ -22,6 +22,10 @@ def get_context(context):
 
     context.twitter_handle = 'erpnext'
     context.facebook_id = 'RohitCuttingTools'
+    context.youtube_channel_id = 'UCrVTlU5g3SeNSZDc1MQV8GA'
+    context.youtube_video_id = '8cER4UUPxK8'
+    context.email = 'help@rigpl.com'
+    context.phone = '+91 2265 4545'
 
     return context
 

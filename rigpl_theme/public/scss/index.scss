@@ -81,6 +81,22 @@ img {
 		right: 0;
 		width: 100%;
 		height: 100%;
-		background: rgba(0, 0, 0, 0.5);
+		background-color: var(--dark);
+		opacity: 0.4;
 	}
+}
+
+.hero-section {
+	background-image: url("/assets/rigpl_theme/images/hero-image.jpg");
+	background-size: cover;
+	background-position-y: 15%;
+	background-position-y: 27%;
+}
+
+.btn-primary {
+	color: $white;
+}
+
+.text-underline {
+	text-decoration: underline;
 }

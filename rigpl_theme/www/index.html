@@ -1,7 +1,7 @@
 {% extends "rigpl_theme/templates/web.html" %}
 {% block content %}
 <main>
-    <section style="position: relative; overflow: hidden;">
+    <section class="hero-section">
         <div class="container py-5">
             <h1 class="text-uppercase font-weight-bold display-4 text-white d-none d-sm-block">{{ homepage_settings.title or 'Rohit Cutting Tools'}}</h1>
             <h1 class="text-uppercase font-weight-bold text-white d-block d-sm-none">{{ homepage_settings.title or 'Rohit Cutting Tools'}}</h1>
@@ -9,16 +9,17 @@
             <h3 class="text-white d-block d-sm-none">{{ homepage_settings.tag_line }}</h3>
         </div>
 
-        <div class="video-background">
+        <!-- <div class="video-background">
             <video autoplay muted loop width="100%">
                 <source src="/files/Helping_World_Manufacturing_Reduce_Costs_Since_1963.mp4" type="video/mp4">
                 Your browser does not support HTML5 video.
             </video>
+            <img class="hero-image" src="https://images.pexels.com/photos/48799/drill-milling-milling-machine-drilling-48799.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" srcset="">
             <div class="video-background-overlay"></div>
-        </div>
+        </div> -->
 
         <div class="container">
-            <button class="my-5 btn btn-primary">Explore</button>
+            <button class="mb-5 btn btn-primary">Explore</button>
         </div>
     </section>
 
@@ -102,13 +103,21 @@
                     <div class="fb-page" data-href="https://www.facebook.com/{{facebook_id}}" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/{{facebook_id}}" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/{{facebook_id}}"></a></blockquote></div>
                 </div>
             </div>
+
+            <div class="col-md-4">
+                <div class="g-ytsubscribe" data-channelid="{{youtube_channel_id}}" data-layout="full" data-count="default"></div>
+                <iframe width="100%" src="https://www.youtube.com/embed/{{youtube_video_id}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
     </section>
 
     <section class="bg-light border-top py-5">
         <div class="container text-center">
             <h5>Have more questions?</h5>
-            <a class="btn btn-primary mt-2" href="/contact">Contact Us</a>
+
+            <p>Email: <a class="text-underline text-dark" href="mailto:{{ email }}">{{ email }}</a></p>
+            <p>Phone: <a class="text-underline text-dark" href="tel:{{ phone }}">{{ phone }}</a></p>
+            <p><a class="btn btn-primary mt-2" href="/contact">Send us a message</a></p>
         </div>
     </section>
 </main>
@@ -124,4 +133,7 @@
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.1';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- youtube button embed -->
+<script src="https://apis.google.com/js/platform.js"></script>
 {% endblock %}
