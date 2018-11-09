@@ -182,7 +182,7 @@
 				.then(r => {
 					if (!r.message) return;
 					if(r.message.cart_settings.enabled) {
-						$this.find(".item-cart, .item-price, .item-stock").toggleClass("hidden", (!!!r.message.product_info.price || !!!r.message.product_info.in_stock));
+						// $this.find(".item-cart, .item-price, .item-stock").toggleClass("hidden", (!!!r.message.product_info.price || !!!r.message.product_info.in_stock));
 					}
 					if(r.message.cart_settings.show_price) {
 						$this.find(".item-price").toggleClass("hidden", false);
@@ -196,7 +196,7 @@
 								(" + r.message.product_info.price.formatted_price + " / " + r.message.product_info.uom + ")</div>");
 
 						if(r.message.product_info.in_stock==0) {
-							$this.find(".item-stock").html("<div style='color: red'> <i class='fa fa-close'></i> __('Not in stock')</div>");
+							$this.find(".item-stock").html(`<div style='color: red'> <i class='fa fa-close'></i> ${__('Not in stock')}</div>`);
 						}
 						else if(r.message.product_info.in_stock==1) {
 							var qty_display = __('In stock');
