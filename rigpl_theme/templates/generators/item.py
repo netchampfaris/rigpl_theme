@@ -1,5 +1,4 @@
 import frappe
-from itertools import product
 
 def get_context(context):
 	valid_attribute_keys = []
@@ -15,7 +14,7 @@ def get_context(context):
 
 		if context.attribute_values:
 			attr_values = context.attribute_values[d.attribute]
-			if len(attr_values) > 1:
+			if len(attr_values) > 1 and d.use_in_description:
 				valid_attribute_keys.append(d.attribute)
 
 	context.valid_attribute_keys = valid_attribute_keys
