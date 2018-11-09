@@ -24,8 +24,10 @@ def get_context(context):
     context.facebook_id = 'RohitCuttingTools'
     context.youtube_channel_id = 'UCrVTlU5g3SeNSZDc1MQV8GA'
     context.youtube_video_id = '8cER4UUPxK8'
-    context.email = 'help@rigpl.com'
-    context.phone = '+91 2265 4545'
+    context.explore_link = '/hss-tools'
+
+    context.email = frappe.db.get_single_value('Contact Us Settings', 'email_id')
+    context.phone = frappe.db.get_single_value('Contact Us Settings', 'phone')
 
     return context
 
