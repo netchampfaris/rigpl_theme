@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from . import __version__ as app_version
-from rigpl_theme.website.top_bar_items import get_top_bar_items
-from rigpl_theme.templates.generators.item import get_item_meta, get_item_attribute_data
+from .website.top_bar_items import get_top_bar_items
+from .templates.generators.item import get_item_meta, get_item_attribute_data
 
 app_name = "rigpl_theme"
 app_title = "RIGPL Theme"
