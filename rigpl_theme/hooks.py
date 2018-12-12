@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from . import __version__ as app_version
+from rigpl_theme.website.top_bar_items import get_top_bar_items
+from rigpl_theme.templates.generators.item import get_item_meta, get_item_attribute_data
 
 app_name = "rigpl_theme"
 app_title = "RIGPL Theme"
@@ -14,12 +16,20 @@ hide_in_installer = True
 home_page = "index"
 
 website_context = {
-	"disable_website_theme": True
+	"disable_website_theme": True,
+	'top_bar_items': get_top_bar_items()
 }
 
 controller_context = {
 	'Item': 'rigpl_theme.templates.generators.item'
 }
+
+website_item = {
+	'get_item_meta': get_item_meta,
+	'get_item_attribute_data': get_item_attribute_data
+}
+
+
 # Includes in <head>
 # ------------------
 

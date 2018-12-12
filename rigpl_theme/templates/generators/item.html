@@ -2,6 +2,9 @@
 
 {% block title %} {{ title }} {% endblock %}
 {% block meta_block %}
+
+{%- set meta = frappe.get_hooks('website_item')['get_item_meta'][0](doc.name) %}
+
 <meta name="keywords" content="{{ meta.keywords }}"/>
 <meta name="description" content="{{ meta.description }}"/>
 <meta name="image" content="{{ meta.image }}">
@@ -97,6 +100,10 @@
 			</div>
 		</div>
 		{%- endif %}
+
+		{%- set variant_data = frappe.get_hooks('website_item')['get_item_attribute_data'][0](variants, attributes, attribute_values) %}
+		{%- set valid_attribute_keys = variant_data['valid_attribute_keys'] %}
+		{%- set attributes_map = variant_data['attributes_map'] %}
 
 		<div class="item-attribute-table mt-5">
 			{% if has_variants and variants %}
