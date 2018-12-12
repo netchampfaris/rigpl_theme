@@ -1,7 +1,7 @@
 {% extends "rigpl_theme/templates/web.html" %}
 {% block content %}
 <main>
-    <section class="hero-section">
+    <section class="hero-section" style="background-image: url({{ frappe.db.get_value('Homepage Settings', 'Homepage Settings', 'hero_image') }})">
         <div class="container py-5">
             <h1 class="text-uppercase font-weight-bold display-4 text-white d-none d-sm-block">{{ homepage_settings.title or 'Rohit Cutting Tools'}}</h1>
             <h1 class="text-uppercase font-weight-bold text-white d-block d-sm-none">{{ homepage_settings.title or 'Rohit Cutting Tools'}}</h1>
