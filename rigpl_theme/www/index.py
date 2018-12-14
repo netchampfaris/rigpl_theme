@@ -29,6 +29,11 @@ def get_context(context):
     context.email = frappe.db.get_single_value('Contact Us Settings', 'email_id')
     context.phone = frappe.db.get_single_value('Contact Us Settings', 'phone')
 
+    slideshow_name = frappe.db.get_single_value('Homepage Settings', 'hero_slideshow')
+    slideshow = frappe.get_doc('Website Slideshow', slideshow_name)
+    context.slides = slideshow.slideshow_items
+    context.slideshow = slideshow
+
     return context
 
 def get_item_route(item_code):
