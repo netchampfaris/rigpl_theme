@@ -34,6 +34,8 @@ def get_context(context):
     context.slides = slideshow.slideshow_items
     context.slideshow = slideshow
 
+    context.title = frappe.db.get_single_value('Homepage', 'title') or ''
+
     return context
 
 def get_item_route(item_code):
