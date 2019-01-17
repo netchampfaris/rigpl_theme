@@ -20,7 +20,7 @@ def get_context(context):
     homepage_sections = frappe.get_all('Homepage Section', order_by='section_order asc')
     context.custom_sections = [frappe.get_doc('Homepage Section', name) for name in homepage_sections]
 
-    context.twitter_handle = 'erpnext'
+    context.twitter_handle = 'rigpl1'
     context.facebook_id = 'RohitCuttingTools'
     context.youtube_channel_id = 'UCrVTlU5g3SeNSZDc1MQV8GA'
     context.youtube_video_id = '8cER4UUPxK8'
