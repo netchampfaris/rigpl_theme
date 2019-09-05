@@ -1,9 +1,7 @@
 import frappe
 
-def update_top_bar_items(doc, method):
-	frappe.conf.developer_mode = 1
-	frappe.get_hooks()
-	frappe.conf.developer_mode = 0
+def update_top_bar_items(context):
+	context.top_bar_items = get_top_bar_items()
 
 def get_top_bar_items():
 	all_top_items = frappe.db.sql("""

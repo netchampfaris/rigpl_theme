@@ -16,8 +16,7 @@ hide_in_installer = True
 home_page = "index"
 
 website_context = {
-	"disable_website_theme": True,
-	'top_bar_items': get_top_bar_items()
+	"disable_website_theme": True
 }
 
 controller_context = {
@@ -98,11 +97,7 @@ website_item = {
 # ---------------
 # Hook on document methods and events
 
-doc_events = {
-	"Website Settings": {
-		"on_update": "rigpl_theme.website.top_bar_items.update_top_bar_items"
-	}
-}
+update_website_context = "rigpl_theme.website.top_bar_items.update_top_bar_items"
 
 # Scheduled Tasks
 # ---------------
