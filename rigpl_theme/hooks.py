@@ -98,13 +98,11 @@ website_item = {
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Website Settings": {
+		"on_update": "rigpl_theme.website.top_bar_items.update_top_bar_items"
+	}
+}
 
 # Scheduled Tasks
 # ---------------

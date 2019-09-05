@@ -1,5 +1,10 @@
 import frappe
 
+def update_top_bar_items(doc, method):
+	frappe.conf.developer_mode = 1
+	frappe.get_hooks()
+	frappe.conf.developer_mode = 0
+
 def get_top_bar_items():
 	all_top_items = frappe.db.sql("""
 		select * from `tabTop Bar Item`
